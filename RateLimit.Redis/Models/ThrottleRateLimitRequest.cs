@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// A throttle request to smooth out the traffic such that it allows requests as long as
-    /// there's still quota in the <c>Capacity</c>. The <c>Capacity</c> in the mean time is being refilled
+    /// there's still quota in the <c>Capacity</c> or bucket size. The <c>Capacity</c> in the mean time is being refilled
     /// at the at the rate specified by <c>RefillRate</c>. Thus, it averages out the traffic with occational burstiness.
     /// See Token Bucket algorithm.
     /// A request throttling or spike protection system built-in to an enterprise API facade is a good example.
@@ -21,7 +21,7 @@
         public int RefillRate { get; set; }
 
         /// <summary>
-        /// Request capacity. Must be positive.
+        /// Request capacity known as bucket size. Must be positive.
         /// </summary>
         public int Capacity { get; set; }
     }

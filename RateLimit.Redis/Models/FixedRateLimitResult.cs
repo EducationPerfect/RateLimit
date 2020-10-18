@@ -12,7 +12,7 @@
 
         /// <summary>
         /// Amount of time the window resets in seconds if the request is denied. 
-        /// If the request is allowed, it defaults to <c>0</c>.
+        /// If the request is allowed, it's set to <c>0</c>.
         /// </summary>
         public double ResetAfter { get; internal set; }
     }
