@@ -9,14 +9,14 @@
     <Title>Decepticon.RateLimit.Redis</Title>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageSummary>Rate limiter that allows you to add request throttling for service protection and daily/hourly limit for your application</PackageSummary>
-    <PackageProjectUrl>https://github.com/DekDevTech/RateLimit</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/DekCode/RateLimit</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/DekDevTech/RateLimit</RepositoryUrl>
+    <RepositoryUrl>https://github.com/DekCode/RateLimit</RepositoryUrl>
     <PackageTags>rate limit throttle throttling redis mongodb service</PackageTags>
     <RepositoryType>Git</RepositoryType>
     <Description>Rate limiter that allows you to add request throttling for service protection and daily/hourly limit for your application</Description>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageReleaseNotes>Include doc summaries</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Version>1.0.0</Version>
   </PropertyGroup>
