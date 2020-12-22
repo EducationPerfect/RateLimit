@@ -14,7 +14,8 @@
     <RepositoryUrl>https://github.com/DekCode/RateLimit</RepositoryUrl>
     <PackageTags>rate limit throttle throttling redis mongodb service</PackageTags>
     <RepositoryType>Git</RepositoryType>
-    <Description>Rate limiter that allows you to add request throttling for service protection and daily/hourly limit for your application</Description>
+    <Description>Rate limiter that allows you to add request throttling for service protection and daily/hourly limit for your application
+Donate via Paypal: dekcodeofficial@gmail.com</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>

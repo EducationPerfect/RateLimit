@@ -1,5 +1,11 @@
-This library allows you to add rate limiting and request throttling to your applications. Rate limiting defines your clients quota such as daily limit as an example. In addition, request throttling helps protect your system from spikes by smoothing out the traffic. Both algorithms use separate tracking in data store.
+This library allows you to add rate limiting and/or request throttling to your applications using Redis. It's all you need. Rate limiting defines your clients' quota, such as daily limit as an example. On the other hand, request throttling helps protect your system from spikes by smoothing out the traffic. Both algorithms use separate tracking in a data store.
+- The rate limiting feature uses the [Fixed Window Counter](https://en.wikipedia.org/wiki/Fixed_window_counter) algorithm.
+- The request throttling feature uses the [Token Bucket](https://en.wikipedia.org/wiki/Token_bucket) algorithm.
+
 This library is under [MIT](https://opensource.org/licenses/MIT) license.
+
+Donation is much appreciated!!
+Donate via Paypal: dekcodeofficial@gmail.com
 
 ## Quickly why?
 - To limit quota used by clients in your APIs/services for your business model
@@ -31,8 +37,8 @@ var request = new FixedRateLimitRequest
 var result = rateLimiter.Validate(request);
 if (!result.IsAllowed)
 {
-    // TODO: Return 429 error
     _logger.Log($"Denied: window resets in {result.ResetAfter} seconds");
+    // Return an error like 429 Too Many Requests
 }
 
 // Code flow continues
@@ -40,7 +46,7 @@ if (!result.IsAllowed)
 ```
 
 ### Request Throttling
-Here's an example on how to do request throttling to allow each client to make 300 requests per minuite but
+Here's an example on how to do request throttling to allow each client to make 300 requests per minute but
 allow bursts of 50 requests or fewer as long as there's enough capacity.
 ```CSharp
 // Create a rate limiter by pass in your Redis IDatabase instance to the constructor
@@ -48,7 +54,7 @@ var rateLimiter = new RateLimiter(redisDatabaseFromYourApp);
 
 var request = new ThrottleRateLimitRequest
 {
-    Key = "some_client_id",
+    Key = "some_client_identifier",
     Capacity = 50, // this is your bucket size
     RefillRate = 5 // per second
 };
@@ -56,8 +62,8 @@ var request = new ThrottleRateLimitRequest
 var result = rateLimiter.Validate(request);
 if (!result.IsAllowed)
 {
-    // TODO: Return 429 error
     _logger.Log($"Denied: Retry after {result.ResetAfter} seconds");
+    // Return an error like 429 Too Many Requests
 }
 
 // Code flow continues
