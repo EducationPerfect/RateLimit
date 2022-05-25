@@ -17,7 +17,7 @@ namespace Decepticon.RateLimit.Redis.Helpers
         public static DateTime UnixTimeStampToDateTime(double unixTimeStampInSeconds)
         {
             // Unix timestamp is seconds past epoch
-            return _Epoch.AddSeconds(unixTimeStampInSeconds).ToLocalTime();
+            return _Epoch.AddSeconds(unixTimeStampInSeconds).ToUniversalTime();
         }
     }
 }

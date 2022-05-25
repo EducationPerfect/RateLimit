@@ -176,6 +176,7 @@ namespace Decepticon.RateLimit
                 local count = tonumber(ARGV[3])
                 local ticks = currentTimeTicks
                 local result = 1
+                local ttl = 86400
                 
                 -- Try getting tracking config from existing record
                 local countStr = redis.call('GET', KEYS[1])
@@ -206,6 +207,9 @@ namespace Decepticon.RateLimit
 
                 -- Consume a token
                 count = count - 1
+                
+                -- Get seconds for a complete refill, and then add 1hr to prevent deleting keys too frequently
+                ttl = (capacity / refillRate) + 3600
 
                 -- Determine the outcome
                 if count < 0 then
@@ -213,8 +217,8 @@ namespace Decepticon.RateLimit
                     count = 0
                 end
                 
-                redis.call('SET', KEYS[1], count)
-                redis.call('SET', KEYS[2], ticks)
+                redis.call('SET', KEYS[1], count, 'EX', ttl)
+                redis.call('SET', KEYS[2], ticks, 'EX', ttl)
 
                 return result .. ',' .. math.abs(10000000 / refillRate)
             ";
